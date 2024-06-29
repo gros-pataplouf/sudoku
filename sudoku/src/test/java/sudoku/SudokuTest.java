@@ -8,14 +8,14 @@ public class SudokuTest
 {
 
     @Test
-    public void CellHasDefaultValue()
+    public void cellHasDefaultValue()
     {
         Cell cell = new Cell();
         assertTrue(cell.getValue() == 0);
     }
 
     @Test
-    public void RowHas9Cells() {
+    public void rowHas9Cells() {
         Board board = new Board();
         String firstRow = board.getRowString(0);
         System.out.println(firstRow);
@@ -23,10 +23,16 @@ public class SudokuTest
     }
 
     @Test
-    public void BoardHas9RowsOf9Cells() {
+    public void boardHas9RowsOf9Cells() {
         Board board = new Board();
         String boardString = board.toString();
         assertTrue(boardString.equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9)));
     }
 
+    @Test
+    public void boardCanPrintBox() {
+        Board board = new Board();
+        String boxString = board.getBoxString(1, 1);
+        assertTrue(boxString.equals("[0, 0, 0]\n".repeat(3)));
+    }
 }
