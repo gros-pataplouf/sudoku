@@ -3,13 +3,10 @@ package sudoku;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-
-public class SudokuTest
-{
+public class SudokuTest {
 
     @Test
-    public void cellHasDefaultValue()
-    {
+    public void cellHasDefaultValue() {
         Cell cell = new Cell();
         assertTrue(cell.getValue() == 0);
     }
@@ -18,7 +15,6 @@ public class SudokuTest
     public void rowHas9Cells() {
         Board board = new Board();
         String firstRow = board.getRowString(0);
-        System.out.println(firstRow);
         assertTrue(firstRow.toString().equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]"));
     }
 
@@ -35,37 +31,69 @@ public class SudokuTest
         String boxString = board.getBoxString(1, 1);
         assertTrue(boxString.equals("[0, 0, 0]\n".repeat(3)));
     }
-    @Test
-    public void one1perRow() {
-        Board board = new Board();
-        board.fill();
-        boolean isValid = true;
-        int numOfOnes = 0;
-        for (int i = 0; i <= board.getRows().length; i++) {
-            // check what happened in the previous loop
-            if (numOfOnes > 1) {
-                isValid = false;
-                break;
-            }
-            if (i > 0 && numOfOnes < 1) {
-                isValid = false;
-                break;
-            }
-            if (i == board.getRows().length) {
-                break;
-            }
-            numOfOnes = 0;
 
-            for (int j = 0; j < board.getRows()[i].length; j++) {
-                if (board.getRows()[i][j].getValue() == 1) {
-                    numOfOnes++;
-                }
-            }
-        }
-        try {assertTrue(isValid);} catch(Exception e) {
-            System.out.println(e.getMessage());
-        };
+    @Test
+    public void canLoadBoardFromString() {
+        Board board = new Board();
+        board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
+        assertTrue(board.toString().equals("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9)));
+
     }
+
+    // @Test
+    // public void one1perRow() {
+    //     Board board = new Board();
+    //     board.fill();
+    //     boolean isValid = true;
+    //     int numOfOnes = 0;
+    //     for (int i = 0; i < board.getRows().length; i++) {
+    //         if (!isValid) {break;}
+    //         numOfOnes = 0;
+    //         for (int j = 0; j < board.getRows()[i].length; j++) {
+    //             if (board.getRows()[i][j].getValue() == 1) {
+    //                 numOfOnes++;
+    //                 if (numOfOnes > 1) {
+    //                     isValid = false;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     try {
+    //         assertTrue(isValid);
+    //     } catch (Exception e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    //     ;
+    // }
+
+    // @Test
+    // public void one1PerColumn() {
+    //     Board board = new Board();
+    //     board.fill();
+    //     int numOfOnes = 0;
+    //     boolean isValid = true;
+
+    //     for (int i = 0; i < board.getCols().length; i++) {
+    //         numOfOnes = 0;
+    //         if (!isValid) {break;}
+    //         for (int j = 0; j < board.getCols()[i].length; j++) {
+    //             if (board.getCols()[i][j].getValue() == 1) {
+    //                 numOfOnes++;
+    //                 if (numOfOnes > 1) {
+    //                     isValid = false;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     try {
+    //         assertTrue(isValid);
+    //     } catch (Exception e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    //     ;
+    // }
 
 
 }

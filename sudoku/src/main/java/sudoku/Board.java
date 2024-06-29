@@ -57,6 +57,7 @@ public class Board {
         return output;
     }
 
+    
     public void fill() {
         for (Cell[] row: this.rows) {
             int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -64,8 +65,53 @@ public class Board {
                 row[i].setValue(numbers[i]);
             }
         }
-        System.out.println(this.toString());
-
         
+        }
+
+
+    
+
+    public Cell[][] getCols() {
+        Cell[][] columns = new Cell[9][9];
+        for (int i = 0; i < this.getRows().length; i++) {
+            for (int j = 0; j < this.getRows().length; j++) {
+                columns[j][i] = this.getRows()[i][j];
+            }
+        }
+        return columns;
+    }
+
+    public Cell[] getCols(int colNumber) {
+        Cell[][] columns = new Cell[9][9];
+        for (int i = 0; i < this.getRows().length; i++) {
+            for (int j = 0; j < this.getRows().length; j++) {
+                columns[j][i] = this.getRows()[i][j];
+            }
+        }
+        return columns[colNumber];
+    }
+
+    public static int find(int searched, Cell[] cells) {
+        for (int i = 0; i < cells.length; i++) {
+            if (cells[i].getValue() == searched) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void load(String input) {
+        String[] splitInput = input.split("]\n");
+        for (int i = 0; i < splitInput.length; i++) {
+            String cleaned = splitInput[i].substring(1, splitInput[i].length());
+            String[] splitRow = cleaned.split(", ");
+            for (int j = 0; j < splitRow.length; j++) {
+                System.out.println(splitRow[j]);
+                int number = Integer.valueOf(splitRow[j]);
+                this.rows[i][j].setValue(number);
+            }
+
+        }
+
     }
 }
