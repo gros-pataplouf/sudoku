@@ -34,5 +34,11 @@ public class SudokuTest
 
     }
 
+    @Test
+    public void BoardConsistsOfBoxes() {
+        Board board = new Board();
+        assertTrue(board.getBoxes() instanceof Box[][]);
+        
+   }
 
 }
