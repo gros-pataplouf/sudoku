@@ -22,4 +22,11 @@ public class SudokuTest
         assertTrue(firstRow.toString().equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]"));
     }
 
+    @Test
+    public void BoardHas9RowsOf9Cells() {
+        Board board = new Board();
+        String boardString = board.toString();
+        assertTrue(boardString.equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9)));
+    }
+
 }
