@@ -3,8 +3,10 @@ import java.util.Arrays;
 
 public class Board {
     private Cell[][] rows;
+    private History history;
     public Board() {
         this.rows = new Cell[9][9];
+        this.history = new History();
         for (Cell[] cellRow: this.rows) {
             for (int i = 0; i < 9; i++) {
                 cellRow[i] = new Cell();
@@ -65,7 +67,7 @@ public class Board {
                 row[i].setValue(numbers[i]);
             }
         }
-        
+        history.add(this.toString());
         }
 
 
@@ -112,6 +114,10 @@ public class Board {
             }
 
         }
+        history.add(this.toString());
+    }
 
+    public History history() {
+        return this.history;
     }
 }

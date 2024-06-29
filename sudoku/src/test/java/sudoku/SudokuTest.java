@@ -40,6 +40,13 @@ public class SudokuTest {
 
     }
 
+    @Test
+    public void boardHasHistory() {
+        Board board = new Board();
+        board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
+        assertTrue(board.history().now().equals(board.toString()));
+    }
+
     // @Test
     // public void one1perRow() {
     //     Board board = new Board();
