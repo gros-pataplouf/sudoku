@@ -11,5 +11,7 @@ public class Cell {
     public String toString() {
         return String.valueOf(this.value);
     }
-    
+    public void setValue(int newValue) {
+        this.value = newValue;
+    }
 }

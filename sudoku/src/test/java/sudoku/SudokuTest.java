@@ -35,4 +35,37 @@ public class SudokuTest
         String boxString = board.getBoxString(1, 1);
         assertTrue(boxString.equals("[0, 0, 0]\n".repeat(3)));
     }
+    @Test
+    public void one1perRow() {
+        Board board = new Board();
+        board.fill();
+        boolean isValid = true;
+        int numOfOnes = 0;
+        for (int i = 0; i <= board.getRows().length; i++) {
+            // check what happened in the previous loop
+            if (numOfOnes > 1) {
+                isValid = false;
+                break;
+            }
+            if (i > 0 && numOfOnes < 1) {
+                isValid = false;
+                break;
+            }
+            if (i == board.getRows().length) {
+                break;
+            }
+            numOfOnes = 0;
+
+            for (int j = 0; j < board.getRows()[i].length; j++) {
+                if (board.getRows()[i][j].getValue() == 1) {
+                    numOfOnes++;
+                }
+            }
+        }
+        try {assertTrue(isValid);} catch(Exception e) {
+            System.out.println(e.getMessage());
+        };
+    }
+
+
 }
