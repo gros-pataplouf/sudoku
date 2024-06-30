@@ -71,6 +71,13 @@ public class SudokuTest {
         }
     }
 
+    @Test
+    public void invalidBoardTwoSameInRow() {
+        Board board = new Board();
+        board.load("[2, 3, 4, 1, 8, 5, 6, 7, 4]\n"+"[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(8));
+        assertTrue(!board.isValid());
+    }
+
     // @Test
     // public void one1perRow() {
     //     Board board = new Board();
