@@ -38,14 +38,16 @@ public class Board {
 
     public Cell[][] getBox(int coordX, int coordY) {
         Cell[][] box = new Cell[3][3];
-        Cell[] row1 = Arrays.copyOfRange(this.rows[coordY * 3], coordX, coordX + 3);
-        Cell[] row2 = Arrays.copyOfRange(this.rows[coordY * 3 + 1], coordX, coordX + 3);
-        Cell[] row3 = Arrays.copyOfRange(this.rows[coordY * 3 + 2], coordX, coordX + 3);
+        Cell[] row1 = Arrays.copyOfRange(this.rows[coordY * 3], coordX * 3, coordX * 3 + 3);
+        Cell[] row2 = Arrays.copyOfRange(this.rows[coordY * 3 + 1], coordX * 3, coordX * 3 + 3);
+        Cell[] row3 = Arrays.copyOfRange(this.rows[coordY * 3 + 2], coordX * 3, coordX * 3 + 3);
         box[0] = row1;
         box[1] = row2;
         box[2] = row3;
         return box;
     }
+
+
 
 
 
@@ -62,8 +64,15 @@ public class Board {
 
     
     public void fillBox(int coordX, int coordY) {
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Board.shuffle(nums);
+        for (int i = 0; i < nums.length; i++) {
+            Cell currentCell = this.rows[coordX*3 + (i % 3)][coordY*3 + (i / 3)];
+            currentCell.setValue(nums[i]);
+        }
         history.add(this.toString());
     }
+
 
     public Cell[][] getCols() {
         Cell[][] columns = new Cell[9][9];
@@ -96,9 +105,13 @@ public class Board {
     }
 
     public boolean isValid() {
-        for (Cell[] row: this.rows) {
-            for (Cell cell: row) {
-                if (Board.findTwice(cell.getValue(), row)){
+        for (int i = 0; i < this.rows.length; i++) {
+            for (int j = 0; j < this.rows[i].length; j++) {
+                Cell cell = this.rows[i][j];
+                if (Board.findTwice(cell.getValue(), this.rows[i])){
+                    return false;
+                }
+                if (Board.findTwice(cell.getValue(), this.getCols(j))){
                     return false;
                 }
             }
@@ -121,7 +134,6 @@ public class Board {
             String cleaned = splitInput[i].substring(1, splitInput[i].length());
             String[] splitRow = cleaned.split(", ");
             for (int j = 0; j < splitRow.length; j++) {
-                System.out.println(splitRow[j]);
                 int number = Integer.valueOf(splitRow[j]);
                 this.rows[i][j].setValue(number);
             }
