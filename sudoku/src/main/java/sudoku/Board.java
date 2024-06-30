@@ -1,6 +1,7 @@
 package sudoku;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.lang.Math;;
+import java.lang.Math;
 
 public class Board {
     private Cell[][] rows;
@@ -73,6 +74,32 @@ public class Board {
         history.add(this.toString());
     }
 
+    public void fillBox(int coordX, int coordY, boolean check) {
+        ArrayList<Integer> nums = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        Board.shuffle(nums);
+
+        for (int i = 0; i < 9; i++) {
+            int cellCoordX = coordX*3 + (i % 3);
+            int cellCoordY = coordY*3 + (i / 3);
+            Cell currentCell = this.rows[cellCoordY][cellCoordX];
+            int loopCounter = 0;
+            while (nums.size() > 0) {
+                if (this.canInsert(nums.get(loopCounter), cellCoordX, cellCoordY)) {
+                    currentCell.setValue(nums.get(loopCounter));
+                    System.out.println("inserted " + nums + " " +  nums.get(loopCounter)  + " " +  loopCounter + " at " + cellCoordX + cellCoordY);
+                    System.out.println(this.toString());
+                    nums.remove(loopCounter);
+                    break;
+                } else {
+                    System.out.println("cannot insert " + nums + " " +  nums.get(loopCounter)  + " " +  loopCounter + "at " + cellCoordX + cellCoordY);
+                    loopCounter++;
+                }
+            }
+
+        }
+        history.add(this.toString());
+    }
+
 
     public Cell[][] getCols() {
         Cell[][] columns = new Cell[9][9];
@@ -87,7 +114,7 @@ public class Board {
     public Cell[] getCols(int colNumber) {
         Cell[][] columns = new Cell[9][9];
         for (int i = 0; i < this.getRows().length; i++) {
-            for (int j = 0; j < this.getRows().length; j++) {
+            for (int j = 0; j < this.getRows()[i].length; j++) {
                 columns[j][i] = this.getRows()[i][j];
             }
         }
@@ -95,6 +122,9 @@ public class Board {
     }
 
     public static boolean findTwice(int searched, Cell[] cells) {
+        if (searched == 0) {
+            return false;
+        }
         int valueCount = 0;
         for (int i = 0; i < cells.length; i++) {
             if (cells[i].getValue() == searched) {
@@ -102,6 +132,19 @@ public class Board {
             }
         }
         return (valueCount > 1);
+    }
+
+    public static boolean find(int searched, Cell[] cells) {
+        if (searched == 0) {
+            return false;
+        }
+        int valueCount = 0;
+        for (int i = 0; i < cells.length; i++) {
+            if (cells[i].getValue() == searched) {
+                valueCount++;
+            }
+        }
+        return (valueCount > 0);
     }
 
     public boolean isValid() {
@@ -124,12 +167,47 @@ public class Board {
         return true;
     }
 
+    public boolean canInsert(int number, int coordX, int coordY) {
+        Cell[] row = this.rows[coordY];
+        System.out.println("looking at row " + coordY);
+        for (Cell c: row) {
+            System.out.print(c.getValue() + "-");
+        }
+        if (Board.find(number, this.rows[coordY])) {
+            return false;
+        }
+        Cell[] col = this.getCols(coordX);
+        System.out.println("looking at col " + coordX);
+        for (Cell c: col) {
+            System.out.print(c.getValue() + "-");
+        }
+        if (Board.find(number, this.getCols(coordX))) {
+            return false;
+        }
+        Cell[][] currentBox = this.getBox(coordX/3,  coordY/3);
+        System.out.println(this.getBoxString(coordX/3,  coordY/3));
+        Cell[] flattenedBox = Board.flatten(currentBox);
+        if (Board.find(number, flattenedBox)) {
+            return false;
+        }
+        return true;
+    }
+
     public static void shuffle(int[] input) {
         for (int i = 0; i < input.length; i++) {
             int randomIndex = (int) ((Math.random() * (input.length - 1)));
             int currentNumber = input[i];
             input[i] = input[randomIndex];
             input[randomIndex] = currentNumber;
+        }
+    }
+
+    public static void shuffle(ArrayList<Integer> input) {
+        for (int i = 0; i < input.size(); i++) {
+            int randomIndex = (int) ((Math.random() * (input.size() - 1)));
+            int currentNumber = input.get(i);
+            input.set(i, input.get(randomIndex));
+            input.set(randomIndex, currentNumber);
         }
     }
 

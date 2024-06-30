@@ -85,6 +85,7 @@ public class SudokuTest {
         board.load("[1, 2, 3, 4, 5, 6, 7, 8, 9]\n".repeat(9));
         assertTrue(!board.isValid());
     }
+
     @Test
     public void invalidBoardTwoSameInBox() {
         Board board = new Board();
@@ -101,6 +102,18 @@ public class SudokuTest {
         );
         assertTrue(!board.isValid());
     }
+
+    // @Test continue later
+    // public void boardStaysValidAfterFillingForthBox() {
+    //     Board board = new Board();
+    //     board.fillBox(0, 0);
+    //     board.fillBox(1, 1);
+    //     board.fillBox(2, 2);
+    //     board.fillBox(2,0, true);
+    //     System.out.println(board.toString());
+    //     assertTrue(board.isValid());
+    // }
+
 
 
     // @Test
