@@ -13,6 +13,9 @@ public class Snapshot {
     public void setPrevious(Snapshot snapshot) {
         this.previous = snapshot;
     }
+    public Snapshot getPrevious() {
+        return this.previous;
+    }
     public void addNext(Snapshot snaphot) {
         this.next.add(snaphot);
     }

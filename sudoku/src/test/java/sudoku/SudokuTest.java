@@ -46,6 +46,14 @@ public class SudokuTest {
         board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
         assertTrue(board.history().now().equals(board.toString()));
     }
+    @Test
+    public void canGoBackInHistory() {
+        Board board = new Board();
+        board.load("[1, 2, 3, 4, 5, 6, 7, 8, 9]\n".repeat(9));
+        board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
+        board.back();
+        assertTrue(board.history().now().equals(board.toString()));
+    }
 
     // @Test
     // public void one1perRow() {

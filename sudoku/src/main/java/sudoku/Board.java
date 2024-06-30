@@ -120,4 +120,9 @@ public class Board {
     public History history() {
         return this.history;
     }
+
+    public void back() {
+        this.history.back();
+        this.load(this.history.now());
+    }
 }

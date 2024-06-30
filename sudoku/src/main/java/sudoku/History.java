@@ -16,5 +16,8 @@ public class History {
     public String now() {
         return this.current.getContent();
     }
+    public void back() {
+        this.current = this.current.getPrevious();
+    }
     
 }
