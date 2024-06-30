@@ -64,10 +64,6 @@ public class SudokuTest {
         String firstBox = board.getBoxString(0, 0);
         String secondBox = board.getBoxString(1, 1);
         String thirdBox = board.getBoxString(2, 2);
-        System.out.println(firstBox);
-        System.out.println(secondBox);
-        System.out.println(thirdBox);
-        System.out.println(board.toString());
 
         for (int i = 1; i <= 9; i++) {
             assertTrue(firstBox.contains(String.valueOf(i)));
@@ -87,6 +83,22 @@ public class SudokuTest {
     public void invalidBoardTwoSameInColumn() {
         Board board = new Board();
         board.load("[1, 2, 3, 4, 5, 6, 7, 8, 9]\n".repeat(9));
+        assertTrue(!board.isValid());
+    }
+    @Test
+    public void invalidBoardTwoSameInBox() {
+        Board board = new Board();
+        board.load(
+          "[1, 2, 3, 4, 5, 6, 7, 8, 9]\n" 
+        + "[2, 3, 4, 5, 6, 7, 8, 9, 1]\n"
+        + "[3, 4, 5, 6, 7, 8, 9, 1, 2]\n"
+        + "[4, 5, 6, 7, 8, 9, 1, 2, 3]\n"
+        + "[5, 6, 7, 8, 9, 1, 2, 3, 4]\n"
+        + "[6, 7, 8, 9, 1, 2, 3, 4, 5]\n"
+        + "[7, 8, 9, 1, 2, 3, 4, 5, 6]\n"
+        + "[8, 9, 1, 2, 3, 4, 5, 6, 7]\n"
+        + "[9, 1, 2, 3, 4, 5, 6, 7, 8]\n"
+        );
         assertTrue(!board.isValid());
     }
 

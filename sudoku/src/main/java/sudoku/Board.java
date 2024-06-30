@@ -114,6 +114,11 @@ public class Board {
                 if (Board.findTwice(cell.getValue(), this.getCols(j))){
                     return false;
                 }
+                Cell[][] currentBox = this.getBox(i / 3, j / 3);
+                Cell[] flattenedBox = Board.flatten(currentBox);
+                if (Board.findTwice(cell.getValue(), flattenedBox)){
+                    return false;
+                }
             }
         }
         return true;
@@ -126,6 +131,21 @@ public class Board {
             input[i] = input[randomIndex];
             input[randomIndex] = currentNumber;
         }
+    }
+
+    public static Cell[] flatten(Cell[][] matrix) {
+        int height = matrix.length;
+        int width = matrix[0].length;
+        Cell[] output = new Cell[height * width];
+        int counter = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                output[counter] = matrix[i][j];
+                counter++;
+            }
+        }
+        return output;
+
     }
 
     public void load(String input) {
