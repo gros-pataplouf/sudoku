@@ -54,6 +54,22 @@ public class SudokuTest {
         board.back();
         assertTrue(board.history().now().equals(board.toString()));
     }
+    @Test
+    public void fillDiagonalBoxesRandomly() {
+        Board board = new Board();
+        board.load("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9));
+        board.fillBox(0, 0);
+        board.fillBox(1, 1);
+        board.fillBox(2, 2);
+        String firstBox = board.getBoxString(0, 0);
+        String secondBox = board.getBoxString(1, 1);
+        String thirdBox = board.getBoxString(2, 2);
+        for (int i = 1; i <= 9; i++) {
+            assertTrue(firstBox.contains(String.valueOf(i)));
+            assertTrue(secondBox.contains(String.valueOf(i)));
+            assertTrue(thirdBox.contains(String.valueOf(i)));
+        }
+    }
 
     // @Test
     // public void one1perRow() {
