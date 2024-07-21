@@ -48,10 +48,6 @@ public class Board {
         return box;
     }
 
-
-
-
-
     public String getBoxString(int coordX, int coordY) {
         Cell[][] box = this.getBox(coordX, coordY);
         String output = "";

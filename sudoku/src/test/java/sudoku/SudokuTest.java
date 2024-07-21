@@ -1,5 +1,7 @@
 package sudoku;
 
+import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -103,73 +105,30 @@ public class SudokuTest {
         assertTrue(!board.isValid());
     }
 
-    // @Test continue later
-    // public void boardStaysValidAfterFillingForthBox() {
-    //     Board board = new Board();
-    //     board.fillBox(0, 0);
-    //     board.fillBox(1, 1);
-    //     board.fillBox(2, 2);
-    //     board.fillBox(2,0, true);
-    //     System.out.println(board.toString());
-    //     assertTrue(board.isValid());
-    // }
-
-
-
     // @Test
-    // public void one1perRow() {
+    // public void cellHasKnowledgeOfRowNeighbours() {
     //     Board board = new Board();
-    //     board.fill();
-    //     boolean isValid = true;
-    //     int numOfOnes = 0;
-    //     for (int i = 0; i < board.getRows().length; i++) {
-    //         if (!isValid) {break;}
-    //         numOfOnes = 0;
-    //         for (int j = 0; j < board.getRows()[i].length; j++) {
-    //             if (board.getRows()[i][j].getValue() == 1) {
-    //                 numOfOnes++;
-    //                 if (numOfOnes > 1) {
-    //                     isValid = false;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     try {
-    //         assertTrue(isValid);
-    //     } catch (Exception e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     ;
+    //     board.load("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(0)); 
+    //     Cell cell = board.getRows()[0][0];
+    //     Cell neighbourInRow = board.getRows()[0][8];
+    //     Cell neighbourInCol = board.getCols(0)[7];
+    //     Cell neighbourInBox = board.getRows()[1][1];
     // }
 
-    // @Test
-    // public void one1PerColumn() {
-    //     Board board = new Board();
-    //     board.fill();
-    //     int numOfOnes = 0;
-    //     boolean isValid = true;
+    @Test
+    public void emptyCellAllNumbersPossible() {
+        Cell cell = new Cell();
+        ArrayList<Integer> nums = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            nums.add(i);
+        }
+        assertEquals(cell.getPossibles(),nums);
+    }
 
-    //     for (int i = 0; i < board.getCols().length; i++) {
-    //         numOfOnes = 0;
-    //         if (!isValid) {break;}
-    //         for (int j = 0; j < board.getCols()[i].length; j++) {
-    //             if (board.getCols()[i][j].getValue() == 1) {
-    //                 numOfOnes++;
-    //                 if (numOfOnes > 1) {
-    //                     isValid = false;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     try {
-    //         assertTrue(isValid);
-    //     } catch (Exception e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     ;
-    // }
+
+    
+
+
 
 
 }
