@@ -123,10 +123,17 @@ public class SudokuTest {
             nums.add(i);
         }
         assertEquals(cell.getPossibles(),nums);
+    
     }
 
-
-    
+    @Test
+    public void cellHas24Neighbours() {
+        Board board = new Board();
+        Cell[] allCells = Board.flatten(board.getRows());
+        for (int i = 0; i < allCells.length; i++) {
+            assertTrue(allCells[i].getNeighbours().length==24);
+        }
+    }
 
 
 
