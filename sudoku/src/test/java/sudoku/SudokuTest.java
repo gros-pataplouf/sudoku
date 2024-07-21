@@ -27,7 +27,6 @@ public class SudokuTest {
         assertTrue(boardString.equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9)));
     }
 
-
     @Test
     public void canLoadBoardFromString() {
         Board board = new Board();
@@ -39,7 +38,7 @@ public class SudokuTest {
     @Test
     public void invalidBoardTwoSameInRow() {
         Board board = new Board();
-        board.load("[2, 3, 4, 1, 8, 5, 6, 7, 4]\n"+"[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(8));
+        board.load("[2, 3, 4, 1, 8, 5, 6, 7, 4]\n" + "[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(8));
         assertTrue(!board.isValid());
     }
 
@@ -54,16 +53,15 @@ public class SudokuTest {
     public void invalidBoardTwoSameInBox() {
         Board board = new Board();
         board.load(
-          "[1, 2, 3, 4, 5, 6, 7, 8, 9]\n" 
-        + "[2, 3, 4, 5, 6, 7, 8, 9, 1]\n"
-        + "[3, 4, 5, 6, 7, 8, 9, 1, 2]\n"
-        + "[4, 5, 6, 7, 8, 9, 1, 2, 3]\n"
-        + "[5, 6, 7, 8, 9, 1, 2, 3, 4]\n"
-        + "[6, 7, 8, 9, 1, 2, 3, 4, 5]\n"
-        + "[7, 8, 9, 1, 2, 3, 4, 5, 6]\n"
-        + "[8, 9, 1, 2, 3, 4, 5, 6, 7]\n"
-        + "[9, 1, 2, 3, 4, 5, 6, 7, 8]\n"
-        );
+                "[1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+                        + "[2, 3, 4, 5, 6, 7, 8, 9, 1]\n"
+                        + "[3, 4, 5, 6, 7, 8, 9, 1, 2]\n"
+                        + "[4, 5, 6, 7, 8, 9, 1, 2, 3]\n"
+                        + "[5, 6, 7, 8, 9, 1, 2, 3, 4]\n"
+                        + "[6, 7, 8, 9, 1, 2, 3, 4, 5]\n"
+                        + "[7, 8, 9, 1, 2, 3, 4, 5, 6]\n"
+                        + "[8, 9, 1, 2, 3, 4, 5, 6, 7]\n"
+                        + "[9, 1, 2, 3, 4, 5, 6, 7, 8]\n");
         assertTrue(!board.isValid());
     }
 
@@ -74,30 +72,27 @@ public class SudokuTest {
         for (int i = 1; i < 10; i++) {
             nums.add(i);
         }
-        assertEquals(cell.getPossibles(),nums);
-    
+        assertEquals(cell.getPossibles(), nums);
+
     }
 
     @Test
-    public void cellStartsWithNoTriedNums() {
-        Cell cell = new Cell();
-        assertEquals(cell.getTried(),new ArrayList<>());
-    
-    }
-    @Test
-    public void fillFunctionProducesValidBoard(){
+    public void fillFunctionProducesValidBoard() {
         Board board = new Board();
         board.fill(0);
         assertTrue(board.isValid());
     }
-    
+
     @Test
     public void generatedBoardComplete() {
         Board board = new Board();
+        long startTime = System.nanoTime();
         board.fill(0);
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println(duration);
         assertTrue(!board.toString().contains("0"));
 
     }
-
 
 }

@@ -6,11 +6,9 @@ import java.util.Arrays;
 public class Cell {
     private int value;
     private ArrayList<Integer> possibles;
-    private ArrayList<Integer> tried;
     public Cell() {
         this.value = 0;
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
-        this.tried = new ArrayList<>();
     }
     public int getValue() {
         return this.value;
@@ -23,20 +21,11 @@ public class Cell {
 
     public void reset() {
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));;
-        this.tried = new ArrayList<>();
         this.value = 0;
-    }
-
-    public void addTried(int number) {
-        this.tried.add(number);
     }
 
     public String toString() {
         return String.valueOf(this.value);
-    }
-
-    public ArrayList<Integer> getTried() {
-        return this.tried;
     }
 
     public void setValue(int newValue) {
