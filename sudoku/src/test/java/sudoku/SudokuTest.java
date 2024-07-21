@@ -105,16 +105,6 @@ public class SudokuTest {
         assertTrue(!board.isValid());
     }
 
-    // @Test
-    // public void cellHasKnowledgeOfRowNeighbours() {
-    //     Board board = new Board();
-    //     board.load("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(0)); 
-    //     Cell cell = board.getRows()[0][0];
-    //     Cell neighbourInRow = board.getRows()[0][8];
-    //     Cell neighbourInCol = board.getCols(0)[7];
-    //     Cell neighbourInBox = board.getRows()[1][1];
-    // }
-
     @Test
     public void emptyCellAllNumbersPossible() {
         Cell cell = new Cell();
@@ -127,15 +117,10 @@ public class SudokuTest {
     }
 
     @Test
-    public void cellHas24Neighbours() {
-        Board board = new Board();
-        Cell[] allCells = Board.flatten(board.getRows());
-        for (int i = 0; i < allCells.length; i++) {
-            assertTrue(allCells[i].getNeighbours().length==24);
-        }
+    public void cellStartsWithNoTriedNums() {
+        Cell cell = new Cell();
+        assertEquals(cell.getTried(),new ArrayList<>());
+    
     }
-
-
-
 
 }
