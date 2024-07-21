@@ -21,6 +21,12 @@ public class Cell {
 
     }
 
+    public void reset() {
+        this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));;
+        this.tried = new ArrayList<>();
+        this.value = 0;
+    }
+
     public void addTried(int number) {
         this.tried.add(number);
     }

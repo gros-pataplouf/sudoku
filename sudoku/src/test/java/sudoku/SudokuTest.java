@@ -27,12 +27,6 @@ public class SudokuTest {
         assertTrue(boardString.equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9)));
     }
 
-    @Test
-    public void boardCanPrintBox() {
-        Board board = new Board();
-        String boxString = board.getBoxString(1, 1);
-        assertTrue(boxString.equals("[0, 0, 0]\n".repeat(3)));
-    }
 
     @Test
     public void canLoadBoardFromString() {
@@ -40,24 +34,6 @@ public class SudokuTest {
         board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
         assertTrue(board.toString().equals("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9)));
 
-    }
-
-    @Test
-    public void fillDiagonalBoxesRandomly() {
-        Board board = new Board();
-        board.load("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9));
-        board.fillBox(0, 0);
-        board.fillBox(1, 1);
-        board.fillBox(2, 2);
-        String firstBox = board.getBoxString(0, 0);
-        String secondBox = board.getBoxString(1, 1);
-        String thirdBox = board.getBoxString(2, 2);
-
-        for (int i = 1; i <= 9; i++) {
-            assertTrue(firstBox.contains(String.valueOf(i)));
-            assertTrue(secondBox.contains(String.valueOf(i)));
-            assertTrue(thirdBox.contains(String.valueOf(i)));
-        }
     }
 
     @Test
@@ -111,9 +87,16 @@ public class SudokuTest {
     @Test
     public void fillFunctionProducesValidBoard(){
         Board board = new Board();
-        board.fill();
-        System.out.println(board.toString());
+        board.fill(0);
         assertTrue(board.isValid());
+    }
+    
+    @Test
+    public void generatedBoardComplete() {
+        Board board = new Board();
+        board.fill(0);
+        assertTrue(!board.toString().contains("0"));
+
     }
 
 
