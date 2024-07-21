@@ -16,6 +16,15 @@ public class Cell {
         return this.value;
     }
 
+    public void removePossible(int idx) {
+        this.possibles.remove(idx);
+
+    }
+
+    public void addTried(int number) {
+        this.tried.add(number);
+    }
+
     public String toString() {
         return String.valueOf(this.value);
     }

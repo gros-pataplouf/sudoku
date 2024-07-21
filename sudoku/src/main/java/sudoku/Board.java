@@ -5,10 +5,8 @@ import java.lang.Math;
 
 public class Board {
     private Cell[][] rows;
-    private History history;
     public Board() {
         this.rows = new Cell[9][9];
-        this.history = new History();
         for (Cell[] cellRow: this.rows) {
             for (int i = 0; i < 9; i++) {
                 cellRow[i] = new Cell();
@@ -67,7 +65,6 @@ public class Board {
             Cell currentCell = this.rows[coordX*3 + (i % 3)][coordY*3 + (i / 3)];
             currentCell.setValue(nums[i]);
         }
-        history.add(this.toString());
     }
 
     public void fillBox(int coordX, int coordY, boolean check) {
@@ -93,7 +90,6 @@ public class Board {
             }
 
         }
-        history.add(this.toString());
     }
 
 
@@ -164,24 +160,13 @@ public class Board {
     }
 
     public boolean canInsert(int number, int coordX, int coordY) {
-        Cell[] row = this.rows[coordY];
-        System.out.println("looking at row " + coordY);
-        for (Cell c: row) {
-            System.out.print(c.getValue() + "-");
-        }
         if (Board.find(number, this.rows[coordY])) {
             return false;
-        }
-        Cell[] col = this.getCols(coordX);
-        System.out.println("looking at col " + coordX);
-        for (Cell c: col) {
-            System.out.print(c.getValue() + "-");
         }
         if (Board.find(number, this.getCols(coordX))) {
             return false;
         }
         Cell[][] currentBox = this.getBox(coordX/3,  coordY/3);
-        System.out.println(this.getBoxString(coordX/3,  coordY/3));
         Cell[] flattenedBox = Board.flatten(currentBox);
         if (Board.find(number, flattenedBox)) {
             return false;
@@ -232,15 +217,24 @@ public class Board {
                 this.rows[i][j].setValue(number);
             }
         }
-        history.add(this.toString());
     }
 
-    public History history() {
-        return this.history;
+    public void fill() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                Cell currentCell = this.getRows()[i][j];
+
+                int randomIndex = (int) (Math.random() * currentCell.getPossibles().size());
+                int randomNr = currentCell.getPossibles().get(randomIndex);
+                if (this.canInsert(randomNr, j, i)) {
+                    this.getRows()[i][j].setValue(randomNr);
+                }
+                currentCell.removePossible(randomIndex);
+                currentCell.addTried(randomNr);
+            }
+        }
     }
 
-    public void back() {
-        this.history.back();
-        this.load(this.history.now());
-    }
+
+
 }
