@@ -1,6 +1,5 @@
 package sudoku;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.lang.Math;
 
@@ -117,24 +116,6 @@ public class Board {
             return false;
         }
         return true;
-    }
-
-    public static void shuffle(int[] input) {
-        for (int i = 0; i < input.length; i++) {
-            int randomIndex = (int) ((Math.random() * (input.length - 1)));
-            int currentNumber = input[i];
-            input[i] = input[randomIndex];
-            input[randomIndex] = currentNumber;
-        }
-    }
-
-    public static void shuffle(ArrayList<Integer> input) {
-        for (int i = 0; i < input.size(); i++) {
-            int randomIndex = (int) ((Math.random() * (input.size() - 1)));
-            int currentNumber = input.get(i);
-            input.set(i, input.get(randomIndex));
-            input.set(randomIndex, currentNumber);
-        }
     }
 
     public static Cell[] flatten(Cell[][] matrix) {
