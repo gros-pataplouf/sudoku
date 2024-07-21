@@ -47,17 +47,8 @@ public class Board {
         return box;
     }
 
-    public Cell[][] getCols() {
-        Cell[][] columns = new Cell[9][9];
-        for (int i = 0; i < this.getRows().length; i++) {
-            for (int j = 0; j < this.getRows().length; j++) {
-                columns[j][i] = this.getRows()[i][j];
-            }
-        }
-        return columns;
-    }
 
-    public Cell[] getCols(int colNumber) {
+    public Cell[] getCol(int colNumber) {
         Cell[][] columns = new Cell[9][9];
         for (int i = 0; i < this.getRows().length; i++) {
             for (int j = 0; j < this.getRows()[i].length; j++) {
@@ -100,7 +91,7 @@ public class Board {
                 if (Board.findTwice(cell.getValue(), this.rows[i])) {
                     return false;
                 }
-                if (Board.findTwice(cell.getValue(), this.getCols(j))) {
+                if (Board.findTwice(cell.getValue(), this.getCol(j))) {
                     return false;
                 }
                 Cell[][] currentBox = this.getBox(i / 3, j / 3);
@@ -117,7 +108,7 @@ public class Board {
         if (Board.find(number, this.rows[coordY])) {
             return false;
         }
-        if (Board.find(number, this.getCols(coordX))) {
+        if (Board.find(number, this.getCol(coordX))) {
             return false;
         }
         Cell[][] currentBox = this.getBox(coordX / 3, coordY / 3);
