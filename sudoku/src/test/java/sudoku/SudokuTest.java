@@ -102,8 +102,25 @@ public class SudokuTest {
         for (int i = 0; i < allCells.length; i++) {
             assertTrue(!allCells[i].isShown());
         }
-
     }
+
+    @Test
+    public void showRandomly24Cells() {
+        Board board = new Board();
+        board.fill(0);
+        board.initialize();
+        Cell[] allCells = Board.flatten(board.getRows());
+        int countShown = 0;
+        for (int i = 0; i < allCells.length; i++) {
+            if (allCells[i].isShown()) {
+                countShown++;
+            }
+        }
+        System.out.println(board.toString());
+        assertTrue(countShown == 24);
+    }
+
+
 
 
 }

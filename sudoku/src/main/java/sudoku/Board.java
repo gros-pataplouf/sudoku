@@ -145,6 +145,18 @@ public class Board {
         }
     }
 
+    public void initialize() {
+        int shownCounter = 0;
+        Cell[] allCells = Board.flatten(this.getRows());
+        while (shownCounter < 24) {
+            int randomInt = (int) (Math.random() * 81);
+            if (!allCells[randomInt].isShown()) {
+                allCells[randomInt].setShown(true);
+                shownCounter++;            
+            }
+        }
+    }
+
     public void fill(int globalIdx) {
         if (!this.toString().contains("0")) {
             System.out.println("Board generated!");

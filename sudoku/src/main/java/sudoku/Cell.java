@@ -39,4 +39,7 @@ public class Cell {
     public boolean isShown() {
         return this.isShown;
     }
+    public void setShown(boolean newValue) {
+        this.isShown = newValue;
+    }
 }
