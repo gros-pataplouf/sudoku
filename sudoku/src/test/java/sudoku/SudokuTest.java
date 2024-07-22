@@ -92,7 +92,18 @@ public class SudokuTest {
         long duration = (endTime - startTime);
         System.out.println(duration);
         assertTrue(!board.toString().contains("0"));
+    }
+
+    @Test
+    public void cellHiddenWhenGenerated() {
+        Board board = new Board();
+        board.fill(0);
+        Cell[] allCells = Board.flatten(board.getRows());
+        for (int i = 0; i < allCells.length; i++) {
+            assertTrue(!allCells[i].isShown());
+        }
 
     }
+
 
 }
