@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import model.Board;
+import model.Cell;
 
 public class GameTest {
     @Test
@@ -35,6 +36,40 @@ public class GameTest {
                         + "[8, 9, 1, 2, 3, 4, 5, 6, 7]\n"
                         + "[9, 1, 2, 3, 4, 5, 6, 7, 8]\n");
         assertTrue(!board.isValid());
+    }
+
+    @Test
+    public void fillFunctionProducesValidBoard() {
+        Board board = new Board();
+        board.fill(0);
+        assertTrue(board.isValid());
+    }
+
+    @Test
+    public void generatedBoardComplete() {
+        Board board = new Board();
+        long startTime = System.nanoTime();
+        board.fill(0);
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println(duration);
+        assertTrue(!board.toString().contains("0"));
+    }
+
+    @Test
+    public void showRandomly24Cells() {
+        Board board = new Board();
+        board.fill(0);
+        board.initialize();
+        Cell[] allCells = Board.flatten(board.getMatrix());
+        int countShown = 0;
+        for (int i = 0; i < allCells.length; i++) {
+            if (allCells[i].isShown()) {
+                countShown++;
+            }
+        }
+        System.out.println(board.toString());
+        assertTrue(countShown == 24);
     }
 
 }
