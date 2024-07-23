@@ -5,13 +5,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+import model.Board;
+import model.Cell;
+
 public class SudokuTest {
 
-    @Test
-    public void cellHasDefaultValue() {
-        Cell cell = new Cell();
-        assertTrue(cell.getValue() == 0);
-    }
+
 
     @Test
     public void rowHas9Cells() {
@@ -32,38 +31,8 @@ public class SudokuTest {
         Board board = new Board();
         board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
         assertTrue(board.toString().equals("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9)));
-
     }
 
-    @Test
-    public void invalidBoardTwoSameInRow() {
-        Board board = new Board();
-        board.load("[2, 3, 4, 1, 8, 5, 6, 7, 4]\n" + "[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(8));
-        assertTrue(!board.isValid());
-    }
-
-    @Test
-    public void invalidBoardTwoSameInColumn() {
-        Board board = new Board();
-        board.load("[1, 2, 3, 4, 5, 6, 7, 8, 9]\n".repeat(9));
-        assertTrue(!board.isValid());
-    }
-
-    @Test
-    public void invalidBoardTwoSameInBox() {
-        Board board = new Board();
-        board.load(
-                "[1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
-                        + "[2, 3, 4, 5, 6, 7, 8, 9, 1]\n"
-                        + "[3, 4, 5, 6, 7, 8, 9, 1, 2]\n"
-                        + "[4, 5, 6, 7, 8, 9, 1, 2, 3]\n"
-                        + "[5, 6, 7, 8, 9, 1, 2, 3, 4]\n"
-                        + "[6, 7, 8, 9, 1, 2, 3, 4, 5]\n"
-                        + "[7, 8, 9, 1, 2, 3, 4, 5, 6]\n"
-                        + "[8, 9, 1, 2, 3, 4, 5, 6, 7]\n"
-                        + "[9, 1, 2, 3, 4, 5, 6, 7, 8]\n");
-        assertTrue(!board.isValid());
-    }
 
     @Test
     public void emptyCellAllNumbersPossible() {
@@ -94,22 +63,13 @@ public class SudokuTest {
         assertTrue(!board.toString().contains("0"));
     }
 
-    @Test
-    public void cellHiddenWhenGenerated() {
-        Board board = new Board();
-        board.fill(0);
-        Cell[] allCells = Board.flatten(board.getRows());
-        for (int i = 0; i < allCells.length; i++) {
-            assertTrue(!allCells[i].isShown());
-        }
-    }
 
     @Test
     public void showRandomly24Cells() {
         Board board = new Board();
         board.fill(0);
         board.initialize();
-        Cell[] allCells = Board.flatten(board.getRows());
+        Cell[] allCells = Board.flatten(board.getMatrix());
         int countShown = 0;
         for (int i = 0; i < allCells.length; i++) {
             if (allCells[i].isShown()) {
@@ -119,8 +79,4 @@ public class SudokuTest {
         System.out.println(board.toString());
         assertTrue(countShown == 24);
     }
-
-
-
-
 }

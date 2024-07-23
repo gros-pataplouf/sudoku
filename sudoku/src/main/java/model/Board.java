@@ -1,4 +1,4 @@
-package sudoku;
+package model;
 
 import java.util.Arrays;
 import java.lang.Math;
@@ -15,7 +15,7 @@ public class Board {
         }
     }
 
-    public Cell[][] getRows() {
+    public Cell[][] getMatrix() {
         return this.rows;
     }
 
@@ -49,9 +49,9 @@ public class Board {
 
     public Cell[] getCol(int colNumber) {
         Cell[][] columns = new Cell[9][9];
-        for (int i = 0; i < this.getRows().length; i++) {
-            for (int j = 0; j < this.getRows()[i].length; j++) {
-                columns[j][i] = this.getRows()[i][j];
+        for (int i = 0; i < this.getMatrix().length; i++) {
+            for (int j = 0; j < this.getMatrix()[i].length; j++) {
+                columns[j][i] = this.getMatrix()[i][j];
             }
         }
         return columns[colNumber];
@@ -130,7 +130,6 @@ public class Board {
             }
         }
         return output;
-
     }
 
     public void load(String input) {
@@ -147,7 +146,7 @@ public class Board {
 
     public void initialize() {
         int shownCounter = 0;
-        Cell[] allCells = Board.flatten(this.getRows());
+        Cell[] allCells = Board.flatten(this.getMatrix());
         while (shownCounter < 24) {
             int randomInt = (int) (Math.random() * 81);
             if (!allCells[randomInt].isShown()) {
@@ -159,18 +158,16 @@ public class Board {
 
     public void fill(int globalIdx) {
         if (!this.toString().contains("0")) {
-            System.out.println("Board generated!");
-            System.out.println(this.toString());
             return;
         }
         int y = globalIdx / 9;
         int x = globalIdx % 9;
-        Cell currentCell = this.getRows()[y][x];
+        Cell currentCell = this.getMatrix()[y][x];
         while (currentCell.getPossibles().size() > 0) {
             int randomIndex = (int) (Math.random() * currentCell.getPossibles().size());
             int randomNr = currentCell.getPossibles().get(randomIndex);
             if (this.canInsert(randomNr, x, y)) {
-                this.getRows()[y][x].setValue(randomNr);
+                this.getMatrix()[y][x].setValue(randomNr);
                 break;
             } else {
                 currentCell.removePossible(randomIndex);
@@ -183,5 +180,4 @@ public class Board {
             this.fill(globalIdx + 1);
         }
     }
-
 }
