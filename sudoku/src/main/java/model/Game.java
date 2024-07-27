@@ -13,6 +13,17 @@ public class Game {
         return this.board;
     }
 
+    public void guess(int coordX, int coordY, int num) {
+        Cell cell = this.board.getMatrix()[coordY][coordX];
+        if (cell.isShown()) {
+            throw new IllegalStateException("Cannot set value for full cell");
+
+        } else {
+            System.out.println("Can accept guess");
+        }
+
+    }
+
     public static void main(String[] args) {
     }
 }

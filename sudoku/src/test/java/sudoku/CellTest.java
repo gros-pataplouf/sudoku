@@ -37,4 +37,12 @@ public class CellTest {
         assertEquals(cell.getPossibles(), nums);
     }
 
+    @Test
+    public void cellCanHaveGuess() {
+        int myGuess = 3;
+        Cell cell = new Cell();
+        cell.setGuess(myGuess);
+        assertTrue(cell.getGuess() == myGuess);
+    }
+
 }

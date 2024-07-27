@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class Cell {
     private int value;
+    private Integer guess;
     private boolean isShown;
     private ArrayList<Integer> possibles;
     public Cell() {
@@ -20,6 +21,13 @@ public class Cell {
         this.possibles.remove(idx);
 
     }
+    public void setGuess(int guess) {
+        this.guess = guess;
+    }
+    public int getGuess() {
+        return this.guess;
+    }
+
 
     public void reset() {
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));;
