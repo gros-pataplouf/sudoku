@@ -50,4 +50,13 @@ public class Cell {
     public void setShown(boolean newValue) {
         this.isShown = newValue;
     }
+    public int getDisplayValue() {
+        if (this.isShown) {
+            return this.value;
+        } else if (this.guess != null) {
+            return this.guess;
+        } else {
+            return 0;
+        }
+    }
 }

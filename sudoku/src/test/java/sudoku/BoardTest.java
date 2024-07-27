@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import model.Board;
 import model.Cell;
+import model.Game;
 
 public class BoardTest {
 
@@ -94,6 +95,6 @@ public class BoardTest {
         System.out.println(board.toString());
         assertTrue(countShown == 24);
     }
-
+    
 
 }

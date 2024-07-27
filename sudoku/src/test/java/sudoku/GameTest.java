@@ -31,6 +31,7 @@ public class GameTest {
             
         }
     }
+
     @Test
     public void guessingHiddenCellSetsGuessValue() {
         Game game = new Game();
@@ -46,7 +47,17 @@ public class GameTest {
         Cell myCell = allCells[cellIdx];
         game.guess(cellIdx%9, cellIdx/9, 3);
         assertTrue(myCell.getGuess() == 3);
-        }
+    }
 
+    @Test
+    public void displayStateOfBoardToPlayer() {
+        Game game = new Game();
+        Board board = game.board();
+        Cell[] allCells = Board.flatten(board.getMatrix());
+        Cell someCell = allCells[7];
+        someCell.setShown(false);
+        game.guess(7, 0, 33);
+        assertTrue(board.toStringPublic().contains("33"));
+    }
 
 }

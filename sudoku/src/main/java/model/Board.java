@@ -46,6 +46,22 @@ public class Board {
         return box;
     }
 
+    public String toStringPublic() {
+    String output = "";
+    for (int i = 0; i < this.rows.length; i++) {
+        Cell[] cells = this.rows[i];
+        int[] displayValues = new int[9];
+        for (int j = 0; j < 9; j++) {
+            displayValues[j] = cells[j].getDisplayValue();
+        }
+        String displayString = Arrays.toString(displayValues);
+        output+= displayString;
+        output += "\n";
+        }
+    return output;
+    }
+
+
 
     public Cell[] getCol(int colNumber) {
         Cell[][] columns = new Cell[9][9];
