@@ -19,7 +19,7 @@ public class Game {
             throw new IllegalStateException("Cannot set value for full cell");
 
         } else {
-            System.out.println("Can accept guess");
+            cell.setGuess(num);
         }
 
     }
