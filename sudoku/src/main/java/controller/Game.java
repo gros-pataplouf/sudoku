@@ -1,4 +1,7 @@
-package model;
+package controller;
+
+import model.Board;
+import model.Cell;
 
 public class Game {
     private Board board;

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import model.Game;
+import controller.Game;
 import model.Board;
 import model.Cell;
 
