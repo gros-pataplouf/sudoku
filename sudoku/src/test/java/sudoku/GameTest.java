@@ -4,9 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import controller.Game;
 import model.Board;
 import model.Cell;
+import model.Game;
 
 public class GameTest {
 
