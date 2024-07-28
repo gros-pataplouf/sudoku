@@ -57,7 +57,24 @@ public class GameTest {
         Cell someCell = allCells[7];
         someCell.setShown(false);
         game.guess(7, 0, 33);
+        System.out.println(board.toStringPublic());
         assertTrue(board.toStringPublic().contains("33"));
+    }
+
+    @Test
+    public void conflictingGuessCellMarkedAdInvalid(){
+        Game game = new Game();
+        Board board = game.board();
+        Cell[] allCells = Board.flatten(board.getMatrix());
+        Cell someCell = allCells[7];
+        someCell.setShown(false);
+        if (someCell.getValue() == 5 ) {
+            game.guess(7, 0, 6);
+        } else {
+            game.guess(7, 0, 5);
+        }
+        assertTrue(!someCell.isValid());
+
     }
 
 }

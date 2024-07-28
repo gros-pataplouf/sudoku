@@ -20,6 +20,9 @@ public class Game {
 
         } else {
             cell.setGuess(num);
+            if (!this.board.canInsert(num, coordX, coordY)) {
+                cell.setValid(false);
+            }
         }
 
     }

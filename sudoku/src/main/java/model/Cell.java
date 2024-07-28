@@ -7,14 +7,24 @@ public class Cell {
     private int value;
     private Integer guess;
     private boolean isShown;
+    private boolean isValid;
     private ArrayList<Integer> possibles;
     public Cell() {
         this.value = 0;
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
         this.isShown = false;
+        this.isValid = true;
     }
     public int getValue() {
         return this.value;
+    }
+
+    public void setValid(boolean newBool) {
+        this.isValid = newBool;
+    }
+
+    public boolean isValid() {
+        return this.isValid;
     }
 
     public void removePossible(int idx) {
