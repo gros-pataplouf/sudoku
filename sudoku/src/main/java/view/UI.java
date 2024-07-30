@@ -5,26 +5,21 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
 
-import model.Game;
 import model.Board;
 import model.Cell;
 
 
 
-public class Frame extends JFrame {
+public class UI extends JFrame {
     GridLayout grid = new GridLayout(9, 9);
-    Frame() {
+    public UI() {
         setTitle("Sukoku");
         setSize(540, 540);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
-    public void createGrid(int rows, int cols) {
+    public void createGrid(int rows, int cols, Board board) {
         JPanel panel = new JPanel(new GridLayout(rows, cols));
-        Game game = new Game();
-        Board board = game.board();
-        board.fill(0);
-        board.initialize();
         System.out.println(board.toStringPublic());
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -51,11 +46,7 @@ public class Frame extends JFrame {
         }
 
         this.add(panel);
+        this.setVisible(true);
     }
 
-      public static void main(String argvs[]) {
-        Frame frame = new Frame();
-        frame.createGrid(9, 9);
-        frame.setVisible(true);
-    }
 }
