@@ -53,15 +53,13 @@ public class UI extends JFrame {
                         e.consume();
                         try {
                             int guess = Integer.valueOf(String.valueOf(e.getKeyChar()));
-                            System.out.println(cellField.getX() + " " + cellField.getY());
-                            controller.guess(guess, cellField.getX(), cellField.getY());
+                            System.out.println("guessing " + currentCell.x() + " " + currentCell.y());
+                            controller.guess(guess, currentCell.x(), currentCell.y());
                             
                         } catch (Exception exc) {
                             System.out.println(exc);
 
-                        }
-
-                    }
+                        }                    }
                     public void keyPressed(KeyEvent e) {
                     }
                     public void keyReleased(KeyEvent e) {

@@ -22,7 +22,7 @@ public class GameController {
         this.ui.createGrid(9, 9, board);
     }
     public void guess(int guess, int x, int y) {
-        this.game.guess(guess, x, y);
+        this.game.guess(x, y, guess);
 
     }
 

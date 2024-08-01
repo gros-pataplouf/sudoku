@@ -61,8 +61,6 @@ public class Board {
     return output;
     }
 
-
-
     public Cell[] getCol(int colNumber) {
         Cell[][] columns = new Cell[9][9];
         for (int i = 0; i < this.getMatrix().length; i++) {

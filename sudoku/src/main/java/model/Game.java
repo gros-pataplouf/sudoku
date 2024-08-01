@@ -15,6 +15,7 @@ public class Game {
 
     public void guess(int coordX, int coordY, int num) {
         Cell cell = this.board.getMatrix()[coordY][coordX];
+        System.out.println("guessing " + num + " in game " + cell.getDisplayValue() + " at " + coordX + "/" + coordY);
         if (cell.isShown()) {
             throw new IllegalStateException("Cannot set value for full cell");
 

@@ -100,7 +100,6 @@ public class BoardTest {
         board.fill(0);
         board.initialize();
         Cell someCell = board.getMatrix()[4][5];
-        System.out.println(someCell.x() + " " + someCell.y());
         assertTrue(someCell.x() == 5);
         assertTrue(someCell.y() == 4);
     }
