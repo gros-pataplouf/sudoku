@@ -8,9 +8,9 @@ public class Board {
 
     public Board() {
         this.rows = new Cell[9][9];
-        for (Cell[] cellRow : this.rows) {
-            for (int i = 0; i < 9; i++) {
-                cellRow[i] = new Cell();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                this.rows[i][j] = new Cell(j, i);
             }
         }
     }
@@ -183,7 +183,7 @@ public class Board {
             int randomIndex = (int) (Math.random() * currentCell.getPossibles().size());
             int randomNr = currentCell.getPossibles().get(randomIndex);
             if (this.canInsert(randomNr, x, y)) {
-                this.getMatrix()[y][x].setValue(randomNr);
+                currentCell.setValue(randomNr);
                 break;
             } else {
                 currentCell.removePossible(randomIndex);

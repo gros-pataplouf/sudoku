@@ -13,7 +13,7 @@ import model.Cell;
 public class CellTest {
     @Test
     public void cellHasDefaultValue() {
-        Cell cell = new Cell();
+        Cell cell = new Cell(1, 1);
         assertTrue(cell.getValue() == 0);
     }
 
@@ -29,7 +29,7 @@ public class CellTest {
 
     @Test
     public void emptyCellAllNumbersPossible() {
-        Cell cell = new Cell();
+        Cell cell = new Cell(1, 1);
         ArrayList<Integer> nums = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             nums.add(i);
@@ -40,9 +40,10 @@ public class CellTest {
     @Test
     public void cellCanHaveGuess() {
         int myGuess = 3;
-        Cell cell = new Cell();
+        Cell cell = new Cell(1, 1);
         cell.setGuess(myGuess);
         assertTrue(cell.getGuess() == myGuess);
     }
+    
 
 }

@@ -9,15 +9,32 @@ public class Cell {
     private boolean isShown;
     private boolean isValid;
     private ArrayList<Integer> possibles;
-    public Cell() {
+    private int x;
+    private int y;
+    public Cell(int x, int y) {
         this.value = 0;
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
         this.isShown = false;
         this.isValid = true;
+        this.x = x;
+        this.y = y;
+
     }
     public int getValue() {
         return this.value;
     }
+
+    public int x() {
+        return this.x;
+    }
+    public int y() {
+        return this.y;
+    }
+
+    public void setCoords(int x, int y) {
+        this.x = x;
+        this.y = y;
+    } 
 
     public void setValid(boolean newBool) {
         this.isValid = newBool;
