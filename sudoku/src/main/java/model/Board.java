@@ -31,18 +31,18 @@ public class Board {
     }
 
     public String toString(boolean playerVersion) {
-    String output = "";
-    for (int i = 0; i < this.rows.length; i++) {
-        Cell[] cells = this.rows[i];
-        int[] displayValues = new int[9];
-        for (int j = 0; j < 9; j++) {
-            displayValues[j] = playerVersion ? cells[j].getDisplayValue() : cells[j].getValue();
+        String output = "";
+        for (int i = 0; i < this.rows.length; i++) {
+            Cell[] cells = this.rows[i];
+            int[] displayValues = new int[9];
+            for (int j = 0; j < 9; j++) {
+                displayValues[j] = playerVersion ? cells[j].getDisplayValue() : cells[j].getValue();
+                }
+            String displayString = Arrays.toString(displayValues);
+            output+= displayString;
+            output += "\n";
         }
-        String displayString = Arrays.toString(displayValues);
-        output+= displayString;
-        output += "\n";
-        }
-    return output;
+        return output;
     }
 
     public Cell[] getCol(int colNumber) {
@@ -117,22 +117,6 @@ public class Board {
     }
 
 
-    public boolean canInsertPlayer(int number, int coordX, int coordY) {
-        if (Board.find(number, this.rows[coordY])) {
-            return false;
-        }
-        if (Board.find(number, this.getCol(coordX))) {
-            return false;
-        }
-        Cell[][] currentBox = this.getBox(coordX / 3, coordY / 3);
-        Cell[] flattenedBox = Board.flatten(currentBox);
-        if (Board.find(number, flattenedBox)) {
-            return false;
-        }
-        return true;
-    }
-
-
     public static Cell[] flatten(Cell[][] matrix) {
         int height = matrix.length;
         int width = matrix[0].length;
@@ -168,7 +152,7 @@ public class Board {
     public void initialize() {
         int shownCounter = 0;
         Cell[] allCells = Board.flatten(this.getMatrix());
-        while (shownCounter < 24) {
+        while (shownCounter < 17) {
             int randomInt = (int) (Math.random() * 81);
             if (!allCells[randomInt].isShown()) {
                 allCells[randomInt].setShown(true);
