@@ -12,8 +12,8 @@ public class BoardTest {
     @Test
     public void rowHas9Cells() {
         Board board = new Board();
-        String firstRow = board.getRowString(0);
-        assertTrue(firstRow.toString().equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]"));
+        Cell[] firstRow = board.getMatrix()[0];
+        assertTrue(firstRow.length == 9);
     }
 
     @Test

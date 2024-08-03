@@ -19,13 +19,6 @@ public class Board {
         return this.rows;
     }
 
-    public String getRowString(int rowNumber) {
-        Cell[] row = this.rows[rowNumber];
-        String rowToString = Arrays.toString(row);
-        String output = rowToString.substring(0, rowToString.length());
-        return output;
-    }
-
     public Cell[][] getBox(int coordX, int coordY) {
         Cell[][] box = new Cell[3][3];
         Cell[] row1 = Arrays.copyOfRange(this.rows[coordY * 3], coordX * 3, coordX * 3 + 3);
