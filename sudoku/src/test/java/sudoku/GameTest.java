@@ -57,7 +57,6 @@ public class GameTest {
         Cell someCell = allCells[7];
         someCell.setShown(false);
         game.guess(7, 0, 33);
-        System.out.println(board.toStringPublic());
         assertTrue(board.toStringPublic().contains("33"));
     }
 

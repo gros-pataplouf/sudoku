@@ -53,13 +53,11 @@ public class Board {
         int[] displayValues = new int[9];
         for (int j = 0; j < 9; j++) {
             displayValues[j] = cells[j].getDisplayValue();
-            System.out.println(cells[j].getDisplayValue());
         }
         String displayString = Arrays.toString(displayValues);
         output+= displayString;
         output += "\n";
         }
-    System.out.println(output);
     return output;
     }
 

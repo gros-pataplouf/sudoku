@@ -90,7 +90,6 @@ public class BoardTest {
                 countShown++;
             }
         }
-        System.out.println(board.toString());
         assertTrue(countShown == 24);
     }
 
