@@ -12,18 +12,20 @@ public class GameController {
 
     public GameController() {
         this.game = new Game();
-        this.ui = new UI(this);
        
     }
     public void start() {
         Board board = this.game.board();
         board.fill(0);
         board.initialize();
+        this.ui = new UI(this);
         this.ui.createGrid(9, 9, board);
     }
-    public void guess(int guess, int x, int y) {
-        this.game.guess(x, y, guess);
-
+    public boolean guess(int guess, int x, int y) {
+        System.out.println("controller guess player");
+        return this.game.guessPlayer(x, y, guess);
     }
-
+    public void test(String input) {
+        System.out.println(input);
+    }
 }

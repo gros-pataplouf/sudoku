@@ -1,10 +1,9 @@
 package view;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
+
 
 import java.awt.Color;
 import java.awt.Font;
@@ -54,11 +53,15 @@ public class UI extends JFrame {
                         try {
                             int guess = Integer.valueOf(String.valueOf(e.getKeyChar()));
                             System.out.println("guessing " + currentCell.x() + " " + currentCell.y());
-                            controller.guess(guess, currentCell.x(), currentCell.y());
-                            
+                            cellField.setText(String.valueOf(guess));
+                            controller.test("input testing");
+                            boolean goodGuess = controller.guess(guess, currentCell.x(), currentCell.y());
+                            if (!goodGuess) {
+                                System.out.println("bad guess");
+                                cellField.setForeground(Color.RED);
+                            } else {cellField.setForeground(Color.GREEN);};
                         } catch (Exception exc) {
                             System.out.println(exc);
-
                         }                    }
                     public void keyPressed(KeyEvent e) {
                     }

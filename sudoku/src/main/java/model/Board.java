@@ -47,6 +47,7 @@ public class Board {
     }
 
     public String toStringPublic() {
+        System.out.println("public board");
     String output = "";
     for (int i = 0; i < this.rows.length; i++) {
         Cell[] cells = this.rows[i];
@@ -132,6 +133,23 @@ public class Board {
         return true;
     }
 
+
+    public boolean canInsertPlayer(int number, int coordX, int coordY) {
+        if (Board.find(number, this.rows[coordY])) {
+            return false;
+        }
+        if (Board.find(number, this.getCol(coordX))) {
+            return false;
+        }
+        Cell[][] currentBox = this.getBox(coordX / 3, coordY / 3);
+        Cell[] flattenedBox = Board.flatten(currentBox);
+        if (Board.find(number, flattenedBox)) {
+            return false;
+        }
+        return true;
+    }
+
+
     public static Cell[] flatten(Cell[][] matrix) {
         int height = matrix.length;
         int width = matrix[0].length;
@@ -156,6 +174,12 @@ public class Board {
                 this.rows[i][j].setValue(number);
             }
         }
+    }
+
+    public static Board loadFromString(String input) {
+        Board myBoard = new Board();
+        myBoard.load(input);
+        return myBoard;
     }
 
     public void initialize() {

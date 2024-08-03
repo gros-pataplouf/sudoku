@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Cell {
     private int value;
-    private Integer guess;
+    private int guess;
     private boolean isShown;
     private boolean isValid;
     private ArrayList<Integer> possibles;
@@ -18,6 +18,7 @@ public class Cell {
         this.isValid = true;
         this.x = x;
         this.y = y;
+        this.guess = 0;
 
     }
     public int getValue() {
@@ -80,10 +81,9 @@ public class Cell {
     public int getDisplayValue() {
         if (this.isShown) {
             return this.value;
-        } else if (this.guess != null) {
-            return this.guess;
         } else {
-            return 0;
+            System.out.println("current guess " + guess);
+            return this.guess;
         }
     }
 }

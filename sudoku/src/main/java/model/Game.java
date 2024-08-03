@@ -28,6 +28,21 @@ public class Game {
 
     }
 
+    public boolean guessPlayer(int coordX, int coordY, int num) {
+        System.out.println("guess player");
+        Board copyOfBoard = Board.loadFromString(this.board().toStringPublic());
+        Cell cell = copyOfBoard.getMatrix()[coordY][coordX];
+        System.out.println(copyOfBoard.toString());
+        System.out.println("guessing " + num + " in game " + cell.getDisplayValue() + " at " + coordX + "/" + coordY);
+        cell.setGuess(num);
+        System.out.println(cell.getDisplayValue());
+        if (!copyOfBoard.canInsert(num, coordX, coordY)) {
+            cell.setValid(false);
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
     }
 }
