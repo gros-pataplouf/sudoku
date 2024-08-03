@@ -82,7 +82,6 @@ public class Cell {
         if (this.isShown) {
             return this.value;
         } else {
-            System.out.println("current guess " + guess);
             return this.guess;
         }
     }

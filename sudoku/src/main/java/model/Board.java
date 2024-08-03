@@ -119,6 +119,7 @@ public class Board {
     }
 
     public boolean canInsert(int number, int coordX, int coordY) {
+        System.out.println("can insert initial");
         if (Board.find(number, this.rows[coordY])) {
             return false;
         }
@@ -135,6 +136,7 @@ public class Board {
 
 
     public boolean canInsertPlayer(int number, int coordX, int coordY) {
+        System.out.println("can insertPlayer");
         if (Board.find(number, this.rows[coordY])) {
             return false;
         }

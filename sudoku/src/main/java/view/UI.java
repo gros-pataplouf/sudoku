@@ -17,9 +17,9 @@ import model.Cell;
 
 public class UI extends JFrame {
     GridLayout grid = new GridLayout(9, 9);
-    private GameController controller;
+    private GameController gameController;
     public UI(GameController controller) {
-        this.controller = controller;
+        this.gameController = controller;
 
         setTitle("Sukoku");
         setSize(540, 540);
@@ -54,8 +54,9 @@ public class UI extends JFrame {
                             int guess = Integer.valueOf(String.valueOf(e.getKeyChar()));
                             System.out.println("guessing " + currentCell.x() + " " + currentCell.y());
                             cellField.setText(String.valueOf(guess));
-                            controller.test("input testing");
-                            boolean goodGuess = controller.guess(guess, currentCell.x(), currentCell.y());
+                            gameController.test("input testing");
+                            System.out.println(gameController);
+                            boolean goodGuess = gameController.guess(guess, currentCell.x(), currentCell.y());
                             if (!goodGuess) {
                                 System.out.println("bad guess");
                                 cellField.setForeground(Color.RED);

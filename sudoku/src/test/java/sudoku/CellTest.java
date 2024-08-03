@@ -44,6 +44,17 @@ public class CellTest {
         cell.setGuess(myGuess);
         assertTrue(cell.getGuess() == myGuess);
     }
+
+    @Test
+    public void hiddenCellDisplaysGuessNotValue() {
+        int myGuess = 3;
+        Cell cell = new Cell(1, 1);
+        cell.setValue(5);
+        cell.setShown(false);
+        cell.setGuess(myGuess);
+        assertTrue(cell.getDisplayValue() == 3);
+    }
+
     
 
 }

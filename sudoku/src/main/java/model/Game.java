@@ -29,7 +29,7 @@ public class Game {
     }
 
     public boolean guessPlayer(int coordX, int coordY, int num) {
-        System.out.println("guess player");
+        System.out.println("guess player from game");
         Board copyOfBoard = Board.loadFromString(this.board().toStringPublic());
         Cell cell = copyOfBoard.getMatrix()[coordY][coordX];
         System.out.println(copyOfBoard.toString());
