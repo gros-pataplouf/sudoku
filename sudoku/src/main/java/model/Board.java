@@ -46,13 +46,13 @@ public class Board {
         return box;
     }
 
-    public String toStringPublic() {
+    public String toStringPublic(boolean playerVersion) {
     String output = "";
     for (int i = 0; i < this.rows.length; i++) {
         Cell[] cells = this.rows[i];
         int[] displayValues = new int[9];
         for (int j = 0; j < 9; j++) {
-            displayValues[j] = cells[j].getDisplayValue();
+            displayValues[j] = playerVersion ? cells[j].getDisplayValue() : cells[j].getValue();
         }
         String displayString = Arrays.toString(displayValues);
         output+= displayString;
