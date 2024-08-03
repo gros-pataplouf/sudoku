@@ -55,6 +55,16 @@ public class CellTest {
         assertTrue(cell.getDisplayValue() == 3);
     }
 
+    @Test
+    public void shownCellDisplaysValueNotGuess() {
+        int myGuess = 3;
+        Cell cell = new Cell(1, 1);
+        cell.setValue(5);
+        cell.setShown(true);
+        cell.setGuess(myGuess);
+        assertTrue(cell.getDisplayValue() == 5);
+    }
+
     
 
 }
