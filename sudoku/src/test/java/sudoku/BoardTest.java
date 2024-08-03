@@ -79,7 +79,7 @@ public class BoardTest {
     }
 
     @Test
-    public void showRandomly24Cells() {
+    public void showRandomly17Cells() {
         Board board = new Board();
         board.fill(0);
         board.initialize();
@@ -90,7 +90,7 @@ public class BoardTest {
                 countShown++;
             }
         }
-        assertTrue(countShown == 24);
+        assertTrue(countShown == 17);
     }
 
     @Test

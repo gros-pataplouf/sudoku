@@ -85,17 +85,13 @@ public class Board {
         for (int i = 0; i < this.rows.length; i++) {
             for (int j = 0; j < this.rows[i].length; j++) {
                 Cell cell = this.rows[i][j];
-                if (Board.findTwice(cell.getValue(), this.rows[i])) {
+                int testedValue = cell.getValue();
+                cell.setValue(0);
+                if (!this.canInsert(testedValue, j, i)) {
+                    cell.setValue(testedValue);
                     return false;
                 }
-                if (Board.findTwice(cell.getValue(), this.getCol(j))) {
-                    return false;
-                }
-                Cell[][] currentBox = this.getBox(i / 3, j / 3);
-                Cell[] flattenedBox = Board.flatten(currentBox);
-                if (Board.findTwice(cell.getValue(), flattenedBox)) {
-                    return false;
-                }
+                cell.setValue(testedValue);
             }
         }
         return true;
@@ -162,7 +158,7 @@ public class Board {
     }
 
     public void fill(int globalIdx) {
-        if (!this.toString(false).contains("0")) {
+        if (!this.toString(false).contains("0")) { // base case: full board, no cells with 0 left
             return;
         }
         int y = globalIdx / 9;
