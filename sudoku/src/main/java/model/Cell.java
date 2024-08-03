@@ -15,7 +15,6 @@ public class Cell {
         this.value = 0;
         this.possibles = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
         this.isShown = false;
-        this.isValid = true;
         this.x = x;
         this.y = y;
         this.guess = 0;
@@ -37,13 +36,6 @@ public class Cell {
         this.y = y;
     } 
 
-    public void setValid(boolean newBool) {
-        this.isValid = newBool;
-    }
-
-    public boolean isValid() {
-        return this.isValid;
-    }
 
     public void removePossible(int idx) {
         this.possibles.remove(idx);

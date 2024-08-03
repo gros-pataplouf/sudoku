@@ -25,6 +25,6 @@ public class GameController {
         this.ui.createGrid(9, 9, board);
     }
     public boolean guess(int guess, int x, int y) {
-        return this.game.guessPlayer(x, y, guess);
+        return this.game.guess(x, y, guess);
     }
 }

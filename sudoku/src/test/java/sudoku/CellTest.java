@@ -64,7 +64,4 @@ public class CellTest {
         cell.setGuess(myGuess);
         assertTrue(cell.getDisplayValue() == 5);
     }
-
-    
-
 }

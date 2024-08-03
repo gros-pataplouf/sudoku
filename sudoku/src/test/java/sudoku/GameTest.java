@@ -25,7 +25,7 @@ public class GameTest {
         for (int i = 0; i < 81; i++) {
             if (allCells[i].isShown()) {
                 cellIdx = i;
-                game.guess(cellIdx%9, cellIdx/9, 5);
+                game.guess(5, cellIdx%9, cellIdx/9);
                 break;
             }
             
@@ -45,7 +45,7 @@ public class GameTest {
             }
         }
         Cell myCell = allCells[cellIdx];
-        game.guess(cellIdx%9, cellIdx/9, 3);
+        game.guess(3, cellIdx%9, cellIdx/9);
         assertTrue(myCell.getGuess() == 3);
     }
 
@@ -56,24 +56,8 @@ public class GameTest {
         Cell[] allCells = Board.flatten(board.getMatrix());
         Cell someCell = allCells[7];
         someCell.setShown(false);
-        game.guess(7, 0, 33);
+        game.guess(33, 7, 0);
         assertTrue(board.toString(true).contains("33"));
-    }
-
-    @Test
-    public void conflictingGuessCellMarkedAdInvalid(){
-        Game game = new Game();
-        Board board = game.board();
-        Cell[] allCells = Board.flatten(board.getMatrix());
-        Cell someCell = allCells[7];
-        someCell.setShown(false);
-        if (someCell.getValue() == 5 ) {
-            game.guess(7, 0, 6);
-        } else {
-            game.guess(7, 0, 5);
-        }
-        assertTrue(!someCell.isValid());
-
     }
 
 

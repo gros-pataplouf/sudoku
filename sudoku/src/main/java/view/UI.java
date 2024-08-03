@@ -50,7 +50,7 @@ public class UI extends JFrame {
                         try {
                             int guess = Integer.valueOf(String.valueOf(e.getKeyChar()));
                             cellField.setText(String.valueOf(guess));
-                            boolean goodGuess = gameController.game().guessPlayer(guess, currentCell.x(),
+                            boolean goodGuess = gameController.game().guess(guess, currentCell.x(),
                             currentCell.y());
                             if (!goodGuess) {
                                 cellField.setForeground(Color.RED);
@@ -60,7 +60,7 @@ public class UI extends JFrame {
                             ;
                         } catch (Exception exc) {
                             cellField.setText("");
-                            gameController.game().guessPlayer(0, currentCell.x(),
+                            gameController.game().guess(0, currentCell.x(),
                             currentCell.y());
                         }
                     }

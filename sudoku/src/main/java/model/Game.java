@@ -13,29 +13,15 @@ public class Game {
         return this.board;
     }
 
-    public void guess(int coordX, int coordY, int num) {
-        Cell cell = this.board.getMatrix()[coordY][coordX];
+
+    public boolean guess(int num, int coordX, int coordY) {
+        Cell cell = this.board().getMatrix()[coordY][coordX];
         if (cell.isShown()) {
             throw new IllegalStateException("Cannot set value for full cell");
-
-        } else {
-            cell.setGuess(num);
-            if (!this.board.canInsert(num, coordX, coordY)) {
-                cell.setValid(false);
-            }
         }
-
-    }
-
-    public boolean guessPlayer( int num, int coordX, int coordY) {
-        System.out.println("guess Player" + coordX + coordY + num);
-        Board copyOfBoard = Board.loadFromString(this.board().toString(true));
-        Cell cell = this.board().getMatrix()[coordY][coordX];
+        Board copyOfBoard = Board.copyFromString(this.board().toString(true));
         cell.setGuess(num);
-        System.out.println("guess set to " + num);
-        System.out.println("getting guess updated " + cell.getGuess());
         if (!copyOfBoard.canInsert(num, coordX, coordY)) {
-            cell.setValid(false);
             return false;
         }
         return true;

@@ -126,7 +126,7 @@ public class Board {
         }
     }
 
-    public static Board loadFromString(String input) {
+    public static Board copyFromString(String input) {
         Board myBoard = new Board();
         myBoard.load(input);
         return myBoard;
