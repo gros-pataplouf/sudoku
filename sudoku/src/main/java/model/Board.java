@@ -19,15 +19,6 @@ public class Board {
         return this.rows;
     }
 
-    public String toString() {
-        String output = "";
-        for (int i = 0; i < this.rows.length; i++) {
-            output += this.getRowString(i);
-            output += "\n";
-        }
-        return output;
-    }
-
     public String getRowString(int rowNumber) {
         Cell[] row = this.rows[rowNumber];
         String rowToString = Arrays.toString(row);
@@ -46,7 +37,7 @@ public class Board {
         return box;
     }
 
-    public String toStringPublic(boolean playerVersion) {
+    public String toString(boolean playerVersion) {
     String output = "";
     for (int i = 0; i < this.rows.length; i++) {
         Cell[] cells = this.rows[i];
@@ -194,7 +185,7 @@ public class Board {
     }
 
     public void fill(int globalIdx) {
-        if (!this.toString().contains("0")) {
+        if (!this.toString(false).contains("0")) {
             return;
         }
         int y = globalIdx / 9;

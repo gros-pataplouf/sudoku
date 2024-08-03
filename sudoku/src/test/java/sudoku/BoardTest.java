@@ -19,7 +19,7 @@ public class BoardTest {
     @Test
     public void boardHas9RowsOf9Cells() {
         Board board = new Board();
-        String boardString = board.toString();
+        String boardString = board.toString(false);
         assertTrue(boardString.equals("[0, 0, 0, 0, 0, 0, 0, 0, 0]\n".repeat(9)));
     }
 
@@ -27,7 +27,7 @@ public class BoardTest {
     public void canLoadBoardFromString() {
         Board board = new Board();
         board.load("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9));
-        assertTrue(board.toString().equals("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9)));
+        assertTrue(board.toString(false).equals("[1, 2, 3, 6, 5, 4, 3, 2, 1]\n".repeat(9)));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class BoardTest {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         System.out.println(duration);
-        assertTrue(!board.toString().contains("0"));
+        assertTrue(!board.toString(false).contains("0"));
     }
 
     @Test
