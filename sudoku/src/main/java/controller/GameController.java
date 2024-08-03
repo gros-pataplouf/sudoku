@@ -14,6 +14,9 @@ public class GameController {
         this.game = new Game();
        
     }
+    public Game game() {
+        return this.game;
+    }
     public void start() {
         Board board = this.game.board();
         board.fill(0);
@@ -22,10 +25,6 @@ public class GameController {
         this.ui.createGrid(9, 9, board);
     }
     public boolean guess(int guess, int x, int y) {
-        System.out.println("controller guess player");
         return this.game.guessPlayer(x, y, guess);
-    }
-    public void test(String input) {
-        System.out.println(input);
     }
 }

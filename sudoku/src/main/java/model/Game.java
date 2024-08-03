@@ -15,7 +15,6 @@ public class Game {
 
     public void guess(int coordX, int coordY, int num) {
         Cell cell = this.board.getMatrix()[coordY][coordX];
-        System.out.println("guessing " + num + " in game " + cell.getDisplayValue() + " at " + coordX + "/" + coordY);
         if (cell.isShown()) {
             throw new IllegalStateException("Cannot set value for full cell");
 
@@ -28,14 +27,13 @@ public class Game {
 
     }
 
-    public boolean guessPlayer(int coordX, int coordY, int num) {
-        System.out.println("guess player from game");
+    public boolean guessPlayer( int num, int coordX, int coordY) {
+        System.out.println("guess Player" + coordX + coordY + num);
         Board copyOfBoard = Board.loadFromString(this.board().toStringPublic());
-        Cell cell = copyOfBoard.getMatrix()[coordY][coordX];
-        System.out.println(copyOfBoard.toString());
-        System.out.println("guessing " + num + " in game " + cell.getDisplayValue() + " at " + coordX + "/" + coordY);
+        Cell cell = this.board().getMatrix()[coordY][coordX];
         cell.setGuess(num);
-        System.out.println(cell.getDisplayValue());
+        System.out.println("guess set to " + num);
+        System.out.println("getting guess updated " + cell.getGuess());
         if (!copyOfBoard.canInsert(num, coordX, coordY)) {
             cell.setValid(false);
             return false;

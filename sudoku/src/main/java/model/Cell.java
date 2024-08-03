@@ -50,6 +50,7 @@ public class Cell {
 
     }
     public void setGuess(int guess) {
+        System.out.println("setting guess" + guess);
         this.guess = guess;
     }
     public int getGuess() {
@@ -82,6 +83,7 @@ public class Cell {
         if (this.isShown) {
             return this.value;
         } else {
+            System.out.println("returning guess" + this.guess);
             return this.guess;
         }
     }

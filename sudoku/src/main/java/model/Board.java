@@ -47,18 +47,19 @@ public class Board {
     }
 
     public String toStringPublic() {
-        System.out.println("public board");
     String output = "";
     for (int i = 0; i < this.rows.length; i++) {
         Cell[] cells = this.rows[i];
         int[] displayValues = new int[9];
         for (int j = 0; j < 9; j++) {
             displayValues[j] = cells[j].getDisplayValue();
+            System.out.println(cells[j].getDisplayValue());
         }
         String displayString = Arrays.toString(displayValues);
         output+= displayString;
         output += "\n";
         }
+    System.out.println(output);
     return output;
     }
 
@@ -119,7 +120,6 @@ public class Board {
     }
 
     public boolean canInsert(int number, int coordX, int coordY) {
-        System.out.println("can insert initial");
         if (Board.find(number, this.rows[coordY])) {
             return false;
         }
@@ -136,7 +136,6 @@ public class Board {
 
 
     public boolean canInsertPlayer(int number, int coordX, int coordY) {
-        System.out.println("can insertPlayer");
         if (Board.find(number, this.rows[coordY])) {
             return false;
         }
