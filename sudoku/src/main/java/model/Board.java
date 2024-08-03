@@ -55,19 +55,6 @@ public class Board {
         return columns[colNumber];
     }
 
-    public static boolean findTwice(int searched, Cell[] cells) {
-        if (searched == 0) {
-            return false;
-        }
-        int valueCount = 0;
-        for (int i = 0; i < cells.length; i++) {
-            if (cells[i].getValue() == searched) {
-                valueCount++;
-            }
-        }
-        return (valueCount > 1);
-    }
-
     public static boolean find(int searched, Cell[] cells) {
         if (searched == 0) {
             return false;
