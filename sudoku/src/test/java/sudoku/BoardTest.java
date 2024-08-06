@@ -102,9 +102,4 @@ public class BoardTest {
         assertTrue(someCell.x() == 5);
         assertTrue(someCell.y() == 4);
     }
-
-
-
-    
-
 }

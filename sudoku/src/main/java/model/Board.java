@@ -19,15 +19,20 @@ public class Board {
         return this.rows;
     }
 
-    public Cell[][] getBox(int coordX, int coordY) {
-        Cell[][] box = new Cell[3][3];
-        Cell[] row1 = Arrays.copyOfRange(this.rows[coordY * 3], coordX * 3, coordX * 3 + 3);
-        Cell[] row2 = Arrays.copyOfRange(this.rows[coordY * 3 + 1], coordX * 3, coordX * 3 + 3);
-        Cell[] row3 = Arrays.copyOfRange(this.rows[coordY * 3 + 2], coordX * 3, coordX * 3 + 3);
-        box[0] = row1;
-        box[1] = row2;
-        box[2] = row3;
-        return box;
+    public Cell[] getRegion(int coordX, int coordY) {
+        Cell[] region = new Cell[9];
+        int startY = coordY - coordY % 3;
+        int startX = coordX - coordX % 3;
+        int cellCounter = 0;
+        for (int i = startY; i < startY + 3; i++) {
+            for (int j = startX; j < startX + 3; j++) {
+                region[cellCounter] = this.getMatrix()[i][j];
+                cellCounter++;
+            }
+        }
+
+        return region;
+
     }
 
     public String toString(boolean playerVersion) {
@@ -91,9 +96,7 @@ public class Board {
         if (Board.find(number, this.getCol(coordX))) {
             return false;
         }
-        Cell[][] currentBox = this.getBox(coordX / 3, coordY / 3);
-        Cell[] flattenedBox = Board.flatten(currentBox);
-        if (Board.find(number, flattenedBox)) {
+        if (Board.find(number, this.getRegion(coordX, coordY))) {
             return false;
         }
         return true;

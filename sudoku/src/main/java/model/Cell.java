@@ -7,7 +7,6 @@ public class Cell {
     private int value;
     private int guess;
     private boolean isShown;
-    private boolean isValid;
     private ArrayList<Integer> possibles;
     private int x;
     private int y;
